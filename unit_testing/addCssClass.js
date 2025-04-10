@@ -4,7 +4,10 @@ const addCssClass = (element, classToAdd) => {
   }
 
   const prepareClass = classToAdd.trim().toLowerCase();
-  const classArray = element.className.split(' ');
+  const classArray = [
+    ...new Set(element.className.trim().replace(/ +/g, ' ').split(' ')),
+  ];
+
   const isInclude = classArray.includes(prepareClass);
 
   if (!isInclude) {

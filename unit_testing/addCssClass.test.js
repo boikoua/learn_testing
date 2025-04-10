@@ -45,5 +45,35 @@ test('Должен выбросить ошибку, если там не стр�
     className: 'joke new',
   };
 
-  expect(() => addCssClass(el, null)).toThrow('Argument is not a string');
+  expect(() => addCssClass(el)).toThrow('Argument is not a string');
+});
+
+test('Должно убирать все пробелы у классов', () => {
+  const el = {
+    className: '   joke new  ',
+  };
+
+  addCssClass(el, 'active');
+
+  expect(el.className).toBe('joke new active');
+});
+
+test('Должно убирать все пробелы у классов', () => {
+  const el = {
+    className: 'joke     new',
+  };
+
+  addCssClass(el, 'active');
+
+  expect(el.className).toBe('joke new active');
+});
+
+test('Должно убирать дубликаты классов', () => {
+  const el = {
+    className: 'joke new new',
+  };
+
+  addCssClass(el, 'active');
+
+  expect(el.className).toBe('joke new active');
 });
