@@ -78,4 +78,34 @@ describe('All tests for slice function', () => {
 
     expect(result).toBe('');
   });
+
+  it(`'begin' is 'NaN'`, () => {
+    const result = slice('0123456789', NaN);
+
+    expect(result).toBe('0123456789');
+  });
+
+  it(`'end' is 'NaN'`, () => {
+    const result = slice('0123456789', 2, NaN);
+
+    expect(result).toBe('23456789');
+  });
+
+  it(`'begin' with decimal part`, () => {
+    const result = slice('0123456789', 2.5, 15);
+
+    expect(result).toBe('23456789');
+  });
+
+  it(`'end' with decimal part`, () => {
+    const result = slice('0123456789', 0, 5.5);
+
+    expect(result).toBe('01234');
+  });
+
+  it(`'negative decimal part`, () => {
+    const result = slice('0123456789', -6.6, -3.3);
+
+    expect(result).toBe('456');
+  });
 });
