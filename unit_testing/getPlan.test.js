@@ -1,12 +1,15 @@
 const getPlan = require('./getPlan');
 
+// Вызываю функцию с нужными параметрами и проверяю её результат
+const res = getPlan(200, 3, 50);
+
 test('Проверка что значение есть массив', () => {
-  expect(getPlan()).toBeInstanceOf(Array);
+  expect(res).toBeInstanceOf(Array);
 });
 
 // toEqual
 test('Массив равен ожидаемой структуре и наполнению', () => {
-  expect(getPlan()).toEqual([1, 2, 3]);
+  expect(res).toEqual([300, 450, 675]);
 });
 
 // toBeNull
@@ -21,5 +24,15 @@ test('Проверка на undefined', () => {
 
 // toBeDefined
 test('Проверка что значение не undefined', () => {
-  expect(getPlan()).toBeDefined();
+  expect(res).toBeDefined();
+});
+
+// toContain
+test('Проверка, содержит ли результат число', () => {
+  expect(res).toContain(450);
+});
+
+// toHaveLength
+test('Проверка длины массива', () => {
+  expect(res).toHaveLength(3);
 });
